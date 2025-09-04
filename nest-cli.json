@@ -1,32 +1,32 @@
 {
-  "$schema": "https://json.schemastore.org/nest-cli",
-  "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/avto-baraka-api/src",
-  "compilerOptions": {
-    "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/avto-baraka-api/tsconfig.app.json"
-  },
-  "monorepo": true,
-  "root": "apps/avto-baraka-api",
-  "projects": {
-    "avto-baraka": {
-      "type": "application",
-      "root": "apps/avto-baraka-api",
-      "entryFile": "main",
-      "sourceRoot": "apps/avto-baraka-api/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/avto-baraka-api/tsconfig.app.json"
-      }
-    },
-    "avto-baraka-batch": {
-      "type": "application",
-      "root": "apps/avto-baraka-batch",
-      "entryFile": "main",
-      "sourceRoot": "apps/avto-baraka-batch/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/avto-baraka-batch/tsconfig.app.json"
-      }
-    }
-  }
+	"$schema": "https://json.schemastore.org/nest-cli",
+	"collection": "@nestjs/schematics",
+	"sourceRoot": "apps/avto-baraka-api/src",
+	"compilerOptions": {
+		"deleteOutDir": true,
+		"webpack": true,
+		"tsConfigPath": "apps/avto-baraka-api/tsconfig.app.json"
+	},
+	"monorepo": true,
+	"root": "apps/avto-baraka-api",
+	"projects": {
+		"avto-baraka-api": {
+			"type": "application",
+			"root": "apps/avto-baraka-api",
+			"entryFile": "main",
+			"sourceRoot": "apps/avto-baraka-api/src",
+			"compilerOptions": {
+				"tsConfigPath": "apps/avto-baraka-api/tsconfig.app.json"
+			}
+		},
+		"avto-baraka-batch": {
+			"type": "application",
+			"root": "apps/avto-baraka-batch",
+			"entryFile": "main",
+			"sourceRoot": "apps/avto-baraka-batch/src",
+			"compilerOptions": {
+				"tsConfigPath": "apps/avto-baraka-batch/tsconfig.app.json"
+			}
+		}
+	}
 }
