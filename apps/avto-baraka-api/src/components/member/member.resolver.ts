@@ -47,7 +47,7 @@ export class MemberResolver {
 		console.log('Query: checkAuthRoles');
 		return `Hi ${authMember.memberNick}, you are ${authMember.memberType} (memberId: ${authMember._id})`;
 	}
-	//Authenticatad  (USER, DILLER, ADMIN)
+	//Authenticatad  (USER, AGENT, ADMIN)
 	@UseGuards(AuthGuard)
 	@Mutation(() => Member)
 	public async updateMember(
@@ -93,7 +93,7 @@ export class MemberResolver {
 
 	/**ADMIN */
 
-	//AUTHORIZATION: ADMIN
+	//AUTHORIZATION: Admin
 	@Roles(MemberType.ADMIN)
 	@UseGuards(RolesGuard)
 	@Query(() => Members)
