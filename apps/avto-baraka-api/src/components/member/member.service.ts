@@ -28,8 +28,17 @@ export class MemberService {
 
 	public async signup(input: MemberInput): Promise<Member> {
 		input.memberPassword = await this.authService.hashPassword(input.memberPassword);
+		const exist = await this.memberModel.findOne({
+			$or: [{ memberNick: input.memberNick }, { memberPhone: input.memberPhone }],
+		});
+		if (exist) {
+			console.log('Duplicate user found:', exist);
+			throw new BadRequestException('Already used member nick or phone');
+		}
+
 		try {
 			const result = await this.memberModel.create(input);
+
 			//TODO: Authentication via TOKEN
 			result.accessToken = await this.authService.createToken(result);
 			return result;

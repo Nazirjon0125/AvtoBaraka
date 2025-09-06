@@ -56,7 +56,7 @@ export class ViewService {
 							lookupVisit,
 							{ $unwind: '$visitedProperty.memberData' },
 						],
-						metaCounter: [{ $count: 'total' }],
+						metaCounter: [{ $count: 'total' }], 
 					},
 				},
 			])

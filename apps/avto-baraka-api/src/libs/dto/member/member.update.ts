@@ -1,4 +1,4 @@
-import { MemberStatus } from '../../enums/member.enum';
+import { MemberStatus } from './../../enums/member.enum';
 import { Field, InputType } from '@nestjs/graphql';
 import { IsNotEmpty, IsOptional, Length } from 'class-validator';
 import { MemberType } from '../../enums/member.enum';

@@ -1,4 +1,4 @@
-import { MeFollowed } from '../follow/follow';
+import { MeFollowed } from './../follow/follow';
 import { ObjectId } from 'mongoose';
 import { MemberAuthType, MemberStatus, MemberType } from '../../enums/member.enum';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
