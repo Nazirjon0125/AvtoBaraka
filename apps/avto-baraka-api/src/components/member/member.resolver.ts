@@ -40,14 +40,14 @@ export class MemberResolver {
 		return `Hi ${memberNick}`;
 	}
 
-	@Roles(MemberType.USER, MemberType.AGENT)
+	@Roles(MemberType.USER, MemberType.DILLER)
 	@UseGuards(RolesGuard)
 	@Query(() => String)
 	public async checkAuthRoles(@AuthMember() authMember: Member): Promise<string> {
 		console.log('Query: checkAuthRoles');
 		return `Hi ${authMember.memberNick}, you are ${authMember.memberType} (memberId: ${authMember._id})`;
 	}
-	//Authenticatad  (USER, AGENT, ADMIN)
+	//Authenticatad  (USER, DILLER, ADMIN)
 	@UseGuards(AuthGuard)
 	@Mutation(() => Member)
 	public async updateMember(
@@ -93,7 +93,7 @@ export class MemberResolver {
 
 	/**ADMIN */
 
-	//AUTHORIZATION: Admin
+	//AUTHORIZATION: ADMIN
 	@Roles(MemberType.ADMIN)
 	@UseGuards(RolesGuard)
 	@Query(() => Members)
