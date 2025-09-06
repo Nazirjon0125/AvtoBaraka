@@ -11,7 +11,7 @@ export class View {
 	viewGroup: ViewGroup;
 
 	@Field(() => String)
-	viewRefId: ObjectId;
+	viewRefId: ObjectId; // tomosha qilinayotgan product id si
 
 	@Field(() => String)
 	memberId: ObjectId;
