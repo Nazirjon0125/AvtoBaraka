@@ -94,7 +94,7 @@ export class Member {
 @ObjectType()
 export class TotalCounter {
 	@Field(() => Int, { nullable: true })
-	total?: number;
+	total: number;
 }
 
 @ObjectType()
