@@ -91,15 +91,16 @@ export class MemberResolver {
 		return await this.memberService.likeTargetMember(memberId, likeRefId);
 	}
 
-	/**ADMIN */
+	/* ADMIN */
 
-	//AUTHORIZATION: Admin
+	//AUTHORIZATION: ADMIN
 	@Roles(MemberType.ADMIN)
 	@UseGuards(RolesGuard)
 	@Query(() => Members)
 	public async getAllMembersByAdmin(
 		@Args('input') input: MembersInquiry, //
 	): Promise<Members> {
+		console.log('Mutation: getAllMembersByAdmin');
 		return await this.memberService.getAllMembersByAdmin(input);
 	}
 
