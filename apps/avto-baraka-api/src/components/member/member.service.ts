@@ -154,7 +154,7 @@ export class MemberService {
 		//LIKE TOOG via Like modules
 
 		const modifier: number = await this.likeService.toggleLike(input);
-		const result = await this.memberStatusEditor({ _id: likeRefId, targetKey: 'memberLikes', modifier: modifier });
+		const result = await this.memberStatsEditor({ _id: likeRefId, targetKey: 'memberLikes', modifier: modifier });
 
 		if (!result) throw new InternalServerErrorException(Message.SOMETHING_WENT_WRONG);
 		return result;
@@ -195,7 +195,7 @@ export class MemberService {
 		return result;
 	}
 
-	public async memberStatusEditor(input: StatisticModifier): Promise<Member> {
+	public async memberStatsEditor(input: StatisticModifier): Promise<Member> {
 		const { _id, targetKey, modifier } = input;
 		return await this.memberModel
 			.findOneAndUpdate(
