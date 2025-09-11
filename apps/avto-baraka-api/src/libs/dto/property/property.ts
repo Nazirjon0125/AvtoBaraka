@@ -1,6 +1,26 @@
 import { ObjectId } from 'mongoose';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { PropertyLocation, PropertyStatus, PropertyType } from '../../enums/property.enum';
+import {
+	AudiModel,
+	BMWModel,
+	ChevroletModel,
+	HondaModel,
+	HyundaiModel,
+	JeepModel,
+	KiaModel,
+	LandRoverModel,
+	LexusModel,
+	LincolnModel,
+	MercedesModel,
+	PropertyCarBody,
+	PropertyCarType,
+	PropertyFuel,
+	PropertyLocation,
+	PropertyStatus,
+	TeslaModel,
+	ToyotaModel,
+	VolvoModel,
+} from '../../enums/property.enum';
 import { Member, TotalCounter } from '../member/member';
 import { MeLiked } from '../like/like';
 
@@ -9,8 +29,29 @@ export class Property {
 	@Field(() => String)
 	_id: ObjectId;
 
-	@Field(() => PropertyType)
-	propertyType: PropertyType;
+	@Field(() => PropertyCarType)
+	propertyCarType: PropertyCarType;
+	/** Brand Models Optional */
+	@Field(() => KiaModel, { nullable: true }) kiaModel?: KiaModel;
+	@Field(() => BMWModel, { nullable: true }) bmwModel?: BMWModel;
+	@Field(() => HyundaiModel, { nullable: true }) hyundaiModel?: HyundaiModel;
+	@Field(() => AudiModel, { nullable: true }) audiModel?: AudiModel;
+	@Field(() => MercedesModel, { nullable: true }) mercedesModel?: MercedesModel;
+	@Field(() => ToyotaModel, { nullable: true }) toyotaModel?: ToyotaModel;
+	@Field(() => TeslaModel, { nullable: true }) teslaModel?: TeslaModel;
+	@Field(() => ChevroletModel, { nullable: true }) chevroletModel?: ChevroletModel;
+	@Field(() => JeepModel, { nullable: true }) jeepModel?: JeepModel;
+	@Field(() => HondaModel, { nullable: true }) hondaModel?: HondaModel;
+	@Field(() => LandRoverModel, { nullable: true }) landRoverModel?: LandRoverModel;
+	@Field(() => LexusModel, { nullable: true }) lexusModel?: LexusModel;
+	@Field(() => LincolnModel, { nullable: true }) lincolnModel?: LincolnModel;
+	@Field(() => VolvoModel, { nullable: true }) volvoModel?: VolvoModel;
+
+	@Field(() => PropertyFuel)
+	propertyFuel: PropertyFuel;
+
+	@Field(() => PropertyCarBody)
+	propertyCarBody: PropertyCarBody;
 
 	@Field(() => PropertyStatus)
 	propertyStatus: PropertyStatus;
@@ -28,25 +69,10 @@ export class Property {
 	propertyPrice: number;
 
 	@Field(() => Number)
-	propertySquare: number;
+	propertyMile: number;
 
-	@Field(() => Int)
-	propertyBeds: number;
-
-	@Field(() => Int)
-	propertyRooms: number;
-
-	@Field(() => Int)
-	propertyViews: number;
-
-	@Field(() => Int)
-	propertyLikes: number;
-
-	@Field(() => Int)
-	propertyComments: number;
-
-	@Field(() => Int)
-	propertyRank: number;
+	@Field(() => Number)
+	propertyYear: number;
 
 	@Field(() => [String])
 	propertyImages: string[];
@@ -64,13 +90,13 @@ export class Property {
 	memberId: ObjectId;
 
 	@Field(() => Date, { nullable: true })
+	constructedAt?: Date;
+
+	@Field(() => Date, { nullable: true })
 	soldAt?: Date;
 
 	@Field(() => Date, { nullable: true })
 	deletedAt?: Date;
-
-	@Field(() => Date, { nullable: true })
-	constructedAt?: Date;
 
 	@Field(() => Date)
 	createdAt: Date;

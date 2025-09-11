@@ -1,6 +1,26 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsIn, IsInt, IsNotEmpty, IsOptional, Length, Min } from 'class-validator';
-import { PropertyLocation, PropertyStatus, PropertyType } from '../../enums/property.enum';
+import {
+	AudiModel,
+	BMWModel,
+	ChevroletModel,
+	HondaModel,
+	HyundaiModel,
+	JeepModel,
+	KiaModel,
+	LandRoverModel,
+	LexusModel,
+	LincolnModel,
+	MercedesModel,
+	PropertyCarBody,
+	PropertyCarType,
+	PropertyFuel,
+	PropertyLocation,
+	PropertyStatus,
+	TeslaModel,
+	ToyotaModel,
+	VolvoModel,
+} from '../../enums/property.enum';
 import { availableOptions, availablePropertySorts } from '../../config';
 import { Direction } from '../../enums/common.enum';
 import { ObjectId } from 'mongoose';
@@ -8,12 +28,77 @@ import { ObjectId } from 'mongoose';
 @InputType()
 export class PropertyInput {
 	@IsNotEmpty()
-	@Field(() => PropertyType)
-	propertyType: PropertyType;
+	@Field(() => PropertyCarType)
+	PropertyCarType: PropertyCarType;
 
 	@IsNotEmpty()
 	@Field(() => PropertyLocation)
 	propertyLocation: PropertyLocation;
+
+	/** Dynamic Model based on brand */
+	@IsOptional()
+	@Field(() => KiaModel, { nullable: true })
+	kiaModel?: KiaModel;
+
+	@IsOptional()
+	@Field(() => BMWModel, { nullable: true })
+	bmwModel?: BMWModel;
+
+	@IsOptional()
+	@Field(() => HyundaiModel, { nullable: true })
+	hyundaiModel?: HyundaiModel;
+
+	@IsOptional()
+	@Field(() => AudiModel, { nullable: true })
+	audiModel?: AudiModel;
+
+	@IsOptional()
+	@Field(() => MercedesModel, { nullable: true })
+	mercedesModel?: MercedesModel;
+
+	@IsOptional()
+	@Field(() => ToyotaModel, { nullable: true })
+	toyotaModel?: ToyotaModel;
+
+	@IsOptional()
+	@Field(() => TeslaModel, { nullable: true })
+	teslaModel?: TeslaModel;
+
+	@IsOptional()
+	@Field(() => ChevroletModel, { nullable: true })
+	chevroletModel?: ChevroletModel;
+
+	@IsOptional()
+	@Field(() => JeepModel, { nullable: true })
+	jeepModel?: JeepModel;
+
+	@IsOptional()
+	@Field(() => HondaModel, { nullable: true })
+	hondaModel?: HondaModel;
+
+	@IsOptional()
+	@Field(() => LandRoverModel, { nullable: true })
+	landRoverModel?: LandRoverModel;
+
+	@IsOptional()
+	@Field(() => LexusModel, { nullable: true })
+	lexusModel?: LexusModel;
+
+	@IsOptional()
+	@Field(() => LincolnModel, { nullable: true })
+	lincolnModel?: LincolnModel;
+
+	@IsOptional()
+	@Field(() => VolvoModel, { nullable: true })
+	volvoModel?: VolvoModel;
+
+	@IsNotEmpty()
+	@Field(() => PropertyFuel)
+	propertyFuel: PropertyFuel;
+
+	@IsNotEmpty()
+	@Field(() => PropertyCarBody)
+	propertyCarBody: PropertyCarBody;
 
 	@IsNotEmpty()
 	@Length(3, 100)
@@ -29,28 +114,21 @@ export class PropertyInput {
 	@Field(() => Number)
 	propertyPrice: number;
 
-	@IsNotEmpty()
-	@Field(() => Number)
-	propertySquare: number;
-
-	@IsNotEmpty()
-	@IsInt()
-	@Min(1)
-	@Field(() => Int)
-	propertyBeds: number;
-
-	@IsNotEmpty()
-	@IsInt()
-	@Min(1)
-	@Field(() => Int)
-	propertyRooms: number;
-
-	@IsNotEmpty()
-	@Field(() => [String])
-	propertyImages: string[];
+	@IsOptional()
+	@Field(() => Number, { nullable: true })
+	propertyMile?: number;
 
 	@IsOptional()
-	@Length(5, 500)
+	@IsInt()
+	@Field(() => Int, { nullable: true })
+	propertyYear?: number;
+
+	@IsOptional()
+	@Field(() => [String], { nullable: true })
+	propertyImages?: string[];
+
+	@IsOptional()
+	@Length(0, 1000)
 	@Field(() => String, { nullable: true })
 	propertyDesc?: string;
 
@@ -62,13 +140,10 @@ export class PropertyInput {
 	@Field(() => Boolean, { nullable: true })
 	propertyRent?: boolean;
 
-	memberId?: ObjectId;
-
 	@IsOptional()
 	@Field(() => Date, { nullable: true })
 	constructedAt?: Date;
 }
-
 @InputType()
 export class PricesRange {
 	@Field(() => Int)
@@ -107,8 +182,8 @@ export class PISearch {
 	locationList?: PropertyLocation[];
 
 	@IsOptional()
-	@Field(() => [PropertyType], { nullable: true })
-	typeList?: PropertyType[];
+	@Field(() => [PropertyCarType], { nullable: true })
+	typeList?: PropertyCarType[];
 
 	@IsOptional()
 	@Field(() => [Number], { nullable: true })
@@ -247,6 +322,4 @@ export class OrdinaryInquiry {
 	@Min(1)
 	@Field(() => Int)
 	limit: number;
-
-	
 }

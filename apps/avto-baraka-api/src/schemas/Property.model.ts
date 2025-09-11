@@ -1,13 +1,61 @@
 import { Schema } from 'mongoose';
-import { PropertyLocation, PropertyStatus, PropertyType } from '../libs/enums/property.enum';
+import {
+	PropertyLocation,
+	PropertyStatus,
+	PropertyCarType,
+	PropertyFuel,
+	PropertyCarBody,
+	KiaModel,
+	BMWModel,
+	HyundaiModel,
+	AudiModel,
+	MercedesModel,
+	ToyotaModel,
+	TeslaModel,
+	ChevroletModel,
+	JeepModel,
+	HondaModel,
+	LandRoverModel,
+	LincolnModel,
+	VolvoModel,
+	LexusModel,
+} from '../libs/enums/property.enum';
 
 const PropertySchema = new Schema(
 	{
 		propertyType: {
 			type: String,
-			enum: PropertyType,
+			enum: PropertyCarType,
 			required: true,
 		},
+
+		propertyFuel: {
+			type: String,
+			enum: PropertyFuel,
+			required: true,
+		},
+
+		propertyCarBody: {
+			type: String,
+			enum: PropertyCarBody,
+			required: true,
+		},
+
+		// Brand-specific models
+		kiaModel: { type: String, enum: Object.values(KiaModel), required: false },
+		bmwModel: { type: String, enum: Object.values(BMWModel), required: false },
+		hyundaiModel: { type: String, enum: Object.values(HyundaiModel), required: false },
+		audiModel: { type: String, enum: Object.values(AudiModel), required: false },
+		mercedesModel: { type: String, enum: Object.values(MercedesModel), required: false },
+		toyotaModel: { type: String, enum: Object.values(ToyotaModel), required: false },
+		teslaModel: { type: String, enum: Object.values(TeslaModel), required: false },
+		chevroletModel: { type: String, enum: Object.values(ChevroletModel), required: false },
+		jeepModel: { type: String, enum: Object.values(JeepModel), required: false },
+		hondaModel: { type: String, enum: Object.values(HondaModel), required: false },
+		landRoverModel: { type: String, enum: Object.values(LandRoverModel), required: false },
+		lexusModel: { type: String, enum: Object.values(LexusModel), required: false },
+		lincolnModel: { type: String, enum: Object.values(LincolnModel), required: false },
+		volvoModel: { type: String, enum: Object.values(VolvoModel), required: false },
 
 		propertyStatus: {
 			type: String,
@@ -36,17 +84,12 @@ const PropertySchema = new Schema(
 			required: true,
 		},
 
-		propertySquare: {
+		propertyMile: {
 			type: Number,
 			required: true,
 		},
 
-		propertyBeds: {
-			type: Number,
-			required: true,
-		},
-
-		propertyRooms: {
+		propertyYear: {
 			type: Number,
 			required: true,
 		},

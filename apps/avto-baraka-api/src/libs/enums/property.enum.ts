@@ -1,23 +1,23 @@
 import { registerEnumType } from '@nestjs/graphql';
 
-export enum PropertyType {
+export enum PropertyCarType {
 	KIA = 'KIA',
 	HYUNDAI = 'HYUNDAI',
 	AUDI = 'AUDI',
 	BMW = 'BMW',
 	MERCEDES = 'MERCEDES',
-	TAYOTA = 'TAYOTA',
+	TAYOTA = 'TOYOTA',
 	TESLA = 'TESLA',
 	CHEVROLET = 'CHEVROLET',
 	JEEP = 'JEEP',
 	HONDA = 'HONDA',
 	LAND_ROVER = 'LAND_ROVER',
-	LEXSUS = ' LEXSUS',
+	LEXSUS = 'LEXSUS',
 	LINCOLN = 'LINCOLN',
 	VOLVO = 'VOLVO',
 }
-registerEnumType(PropertyType, {
-	name: 'PropertyType',
+registerEnumType(PropertyCarType, {
+	name: 'PropertyCarType',
 });
 
 export enum KiaModel {
@@ -160,7 +160,7 @@ export enum TeslaModel {
 }
 registerEnumType(TeslaModel, { name: 'TeslaModel' });
 
-export enum ChevyModel {
+export enum ChevroletModel {
 	SPARK = 'SPARK',
 	SONIC = 'SONIC',
 	MALIBU = 'MALIBU',
@@ -179,7 +179,7 @@ export enum ChevyModel {
 	BOLT_EV = 'BOLT_EV',
 	BOLT_EUV = 'BOLT_EUV',
 }
-registerEnumType(ChevyModel, { name: 'ChevyModel' });
+registerEnumType(ChevroletModel, { name: 'ChevroletModel' });
 
 export enum JeepModel {
 	CHEROKEE = 'CHEROKEE',
@@ -277,6 +277,24 @@ export enum PropertyFuel {
 }
 registerEnumType(PropertyFuel, {
 	name: 'PropertyFuel',
+});
+
+export enum PropertyCarBody {
+	SEDAN = 'SEDAN',
+	HATCHBACK = 'HATCHBACK',
+	SUV = 'SUV',
+	COUPE = 'COUPE',
+	CONVERTIBLE = 'CONVERTIBLE',
+	WAGON = 'WAGON',
+	VAN = 'VAN',
+	TRUCK = 'TRUCK',
+	PICKUP_TRUCK = 'PICKUP_TRUCK',
+	MINIVAN = 'MINIVAN',
+	LIMOUSINE = 'LIMOUSINE',
+	ROADSTER = 'ROADSTER',
+}
+registerEnumType(PropertyCarBody, {
+	name: 'PropertyCarBody',
 });
 
 export enum PropertyStatus {
