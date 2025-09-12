@@ -34,7 +34,11 @@ export class PropertyService {
 	public async createProperty(input: PropertyInput): Promise<Property> {
 		try {
 			const result = await this.propertyModel.create(input);
-			await this.memberService.memberStatsEditor({ _id: result.memberId, targetKey: 'memberProperties', modifier: 1 });
+			await this.memberService.memberStatsEditor({
+				_id: result.memberId,
+				targetKey: 'memberProperties',
+				modifier: 1,
+			});
 			return result;
 		} catch (err) {
 			console.log('Error, Service.model: ', err.message);

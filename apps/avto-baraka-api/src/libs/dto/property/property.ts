@@ -31,21 +31,49 @@ export class Property {
 
 	@Field(() => PropertyCarType)
 	propertyCarType: PropertyCarType;
+
 	/** Brand Models Optional */
-	@Field(() => KiaModel, { nullable: true }) kiaModel?: KiaModel;
-	@Field(() => BMWModel, { nullable: true }) bmwModel?: BMWModel;
-	@Field(() => HyundaiModel, { nullable: true }) hyundaiModel?: HyundaiModel;
-	@Field(() => AudiModel, { nullable: true }) audiModel?: AudiModel;
-	@Field(() => MercedesModel, { nullable: true }) mercedesModel?: MercedesModel;
-	@Field(() => ToyotaModel, { nullable: true }) toyotaModel?: ToyotaModel;
-	@Field(() => TeslaModel, { nullable: true }) teslaModel?: TeslaModel;
-	@Field(() => ChevroletModel, { nullable: true }) chevroletModel?: ChevroletModel;
-	@Field(() => JeepModel, { nullable: true }) jeepModel?: JeepModel;
-	@Field(() => HondaModel, { nullable: true }) hondaModel?: HondaModel;
-	@Field(() => LandRoverModel, { nullable: true }) landRoverModel?: LandRoverModel;
-	@Field(() => LexusModel, { nullable: true }) lexusModel?: LexusModel;
-	@Field(() => LincolnModel, { nullable: true }) lincolnModel?: LincolnModel;
-	@Field(() => VolvoModel, { nullable: true }) volvoModel?: VolvoModel;
+	@Field(() => KiaModel, { nullable: true })
+	kiaModel?: KiaModel;
+
+	@Field(() => BMWModel, { nullable: true })
+	bmwModel?: BMWModel;
+
+	@Field(() => HyundaiModel, { nullable: true })
+	hyundaiModel?: HyundaiModel;
+
+	@Field(() => AudiModel, { nullable: true })
+	audiModel?: AudiModel;
+
+	@Field(() => MercedesModel, { nullable: true })
+	mercedesModel?: MercedesModel;
+
+	@Field(() => ToyotaModel, { nullable: true })
+	toyotaModel?: ToyotaModel;
+
+	@Field(() => TeslaModel, { nullable: true })
+	teslaModel?: TeslaModel;
+
+	@Field(() => ChevroletModel, { nullable: true })
+	chevroletModel?: ChevroletModel;
+
+	@Field(() => JeepModel, { nullable: true })
+	jeepModel?: JeepModel;
+
+	@Field(() => HondaModel, { nullable: true })
+	hondaModel?: HondaModel;
+
+	@Field(() => LandRoverModel, { nullable: true })
+	landRoverModel?: LandRoverModel;
+
+	@Field(() => LexusModel, { nullable: true })
+	lexusModel?: LexusModel;
+
+	@Field(() => LincolnModel, { nullable: true })
+	lincolnModel?: LincolnModel;
+
+	@Field(() => VolvoModel, { nullable: true })
+	volvoModel?: VolvoModel;
 
 	@Field(() => PropertyFuel)
 	propertyFuel: PropertyFuel;
@@ -71,8 +99,11 @@ export class Property {
 	@Field(() => Number)
 	propertyMile: number;
 
-	@Field(() => Number)
+	@Field(() => Int)
 	propertyYear: number;
+
+	@Field(() => Number)
+	propertyViews: number;
 
 	@Field(() => [String])
 	propertyImages: string[];

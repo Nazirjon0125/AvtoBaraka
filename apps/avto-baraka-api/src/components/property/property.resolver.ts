@@ -23,7 +23,7 @@ import { AuthGuard } from '../auth/guards/auth.guard';
 export class PropertyResolver {
 	constructor(private readonly propertyService: PropertyService) {}
 
-	@Roles(MemberType.AGENT)
+	@Roles(MemberType.AGENT, MemberType.ADMIN, MemberType.USER)
 	@UseGuards(RolesGuard)
 	@Mutation(() => Property)
 	public async createProperty(

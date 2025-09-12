@@ -29,7 +29,7 @@ import { ObjectId } from 'mongoose';
 export class PropertyInput {
 	@IsNotEmpty()
 	@Field(() => PropertyCarType)
-	PropertyCarType: PropertyCarType;
+	propertyCarType: PropertyCarType;
 
 	@IsNotEmpty()
 	@Field(() => PropertyLocation)
@@ -114,21 +114,24 @@ export class PropertyInput {
 	@Field(() => Number)
 	propertyPrice: number;
 
-	@IsOptional()
-	@Field(() => Number, { nullable: true })
-	propertyMile?: number;
-
-	@IsOptional()
+	@IsNotEmpty()
 	@IsInt()
-	@Field(() => Int, { nullable: true })
-	propertyYear?: number;
+	@Field(() => Int)
+	@Min(1)
+	propertyMile: number;
 
-	@IsOptional()
-	@Field(() => [String], { nullable: true })
+	@IsNotEmpty()
+	@IsInt()
+	@Field(() => Int)
+	@Min(1)
+	propertyYear: number;
+
+	@IsNotEmpty()
+	@Field(() => [String])
 	propertyImages?: string[];
 
 	@IsOptional()
-	@Length(0, 1000)
+	@Length(1, 1000)
 	@Field(() => String, { nullable: true })
 	propertyDesc?: string;
 
@@ -139,6 +142,8 @@ export class PropertyInput {
 	@IsOptional()
 	@Field(() => Boolean, { nullable: true })
 	propertyRent?: boolean;
+
+	memberId?: ObjectId;
 
 	@IsOptional()
 	@Field(() => Date, { nullable: true })

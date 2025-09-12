@@ -23,9 +23,21 @@ import {
 
 const PropertySchema = new Schema(
 	{
-		propertyType: {
+		propertyCarType: {
 			type: String,
 			enum: PropertyCarType,
+			required: true,
+		},
+
+		propertyStatus: {
+			type: String,
+			enum: PropertyStatus,
+			default: PropertyStatus.ACTIVE,
+		},
+
+		propertyLocation: {
+			type: String,
+			enum: PropertyLocation,
 			required: true,
 		},
 
@@ -42,31 +54,88 @@ const PropertySchema = new Schema(
 		},
 
 		// Brand-specific models
-		kiaModel: { type: String, enum: Object.values(KiaModel), required: false },
-		bmwModel: { type: String, enum: Object.values(BMWModel), required: false },
-		hyundaiModel: { type: String, enum: Object.values(HyundaiModel), required: false },
-		audiModel: { type: String, enum: Object.values(AudiModel), required: false },
-		mercedesModel: { type: String, enum: Object.values(MercedesModel), required: false },
-		toyotaModel: { type: String, enum: Object.values(ToyotaModel), required: false },
-		teslaModel: { type: String, enum: Object.values(TeslaModel), required: false },
-		chevroletModel: { type: String, enum: Object.values(ChevroletModel), required: false },
-		jeepModel: { type: String, enum: Object.values(JeepModel), required: false },
-		hondaModel: { type: String, enum: Object.values(HondaModel), required: false },
-		landRoverModel: { type: String, enum: Object.values(LandRoverModel), required: false },
-		lexusModel: { type: String, enum: Object.values(LexusModel), required: false },
-		lincolnModel: { type: String, enum: Object.values(LincolnModel), required: false },
-		volvoModel: { type: String, enum: Object.values(VolvoModel), required: false },
-
-		propertyStatus: {
+		kiaModel: {
 			type: String,
-			enum: PropertyStatus,
-			default: PropertyStatus.ACTIVE,
+			enum: KiaModel,
+			required: false,
 		},
 
-		propertyLocation: {
+		bmwModel: {
 			type: String,
-			enum: PropertyLocation,
-			required: true,
+			enum: BMWModel,
+			required: false,
+		},
+
+		hyundaiModel: {
+			type: String,
+			enum: HyundaiModel,
+			required: false,
+		},
+
+		audiModel: {
+			type: String,
+			enum: AudiModel,
+			required: false,
+		},
+
+		mercedesModel: {
+			type: String,
+			enum: MercedesModel,
+			required: false,
+		},
+
+		toyotaModel: {
+			type: String,
+			enum: ToyotaModel,
+			required: false,
+		},
+
+		teslaModel: {
+			type: String,
+			enum: TeslaModel,
+			required: false,
+		},
+
+		chevroletModel: {
+			type: String,
+			enum: ChevroletModel,
+			required: false,
+		},
+
+		jeepModel: {
+			type: String,
+			enum: JeepModel,
+			required: false,
+		},
+
+		hondaModel: {
+			type: String,
+			enum: HondaModel,
+			required: false,
+		},
+
+		landRoverModel: {
+			type: String,
+			enum: LandRoverModel,
+			required: false,
+		},
+
+		lexusModel: {
+			type: String,
+			enum: LexusModel,
+			required: false,
+		},
+
+		lincolnModel: {
+			type: String,
+			enum: LincolnModel,
+			required: false,
+		},
+
+		volvoModel: {
+			type: String,
+			enum: VolvoModel,
+			required: false,
 		},
 
 		propertyAddress: {
