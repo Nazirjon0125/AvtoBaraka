@@ -39,7 +39,7 @@ export class PropertyService {
 				targetKey: 'memberProperties',
 				modifier: 1,
 			});
-			console.log('+++ Service.model: ', result);
+
 			return result;
 		} catch (err) {
 			console.log('Error, Service.model: ', err.message);
@@ -50,7 +50,7 @@ export class PropertyService {
 	public async getProperty(memberId: ObjectId, propertyId: ObjectId): Promise<Property> {
 		const search: T = {
 			_id: propertyId,
-			propertyStatus: PropertyStatus.ACTIVE,
+			propertyStatus: PropertyStatus.ACTIVE || PropertyStatus.SOLD,
 		};
 
 		const targetProperty: Property = await this.propertyModel.findOne(search).lean().exec();

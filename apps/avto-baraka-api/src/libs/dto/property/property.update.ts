@@ -121,11 +121,13 @@ export class PropertyUpdate {
 	propertyPrice?: number;
 
 	@IsOptional()
+	@Min(1)
 	@Field(() => Number, { nullable: true })
 	propertyMile?: number;
 
 	@IsOptional()
 	@IsInt()
+	@Min(6)
 	@Field(() => Int, { nullable: true })
 	propertyYear?: number;
 
@@ -134,7 +136,7 @@ export class PropertyUpdate {
 	propertyImages?: string[];
 
 	@IsOptional()
-	@Length(0, 500)
+	@Length(0, 1000)
 	@Field(() => String, { nullable: true })
 	propertyDesc?: string;
 
