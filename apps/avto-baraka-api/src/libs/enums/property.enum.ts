@@ -269,7 +269,7 @@ export enum VolvoModel {
 registerEnumType(VolvoModel, { name: 'VolvoModel' });
 
 export enum PropertyFuel {
-	GAS = 'GAS',
+	LPG = 'LPG',
 	PETROL = 'PETROL',
 	DIESEL = 'DIESEL',
 	ELECTRIC = 'ELECTRIC',
