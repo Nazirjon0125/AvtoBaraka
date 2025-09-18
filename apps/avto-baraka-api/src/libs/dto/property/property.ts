@@ -102,8 +102,17 @@ export class Property {
 	@Field(() => Int)
 	propertyYear: number;
 
-	@Field(() => Number)
+	@Field(() => Int)
 	propertyViews: number;
+
+	@Field(() => Int)
+	propertyLikes: number;
+
+	@Field(() => Int)
+	propertyComments: number;
+
+	@Field(() => Int)
+	propertyRank: number;
 
 	@Field(() => [String])
 	propertyImages: string[];
@@ -121,13 +130,13 @@ export class Property {
 	memberId: ObjectId;
 
 	@Field(() => Date, { nullable: true })
-	constructedAt?: Date;
-
-	@Field(() => Date, { nullable: true })
 	soldAt?: Date;
 
 	@Field(() => Date, { nullable: true })
 	deletedAt?: Date;
+
+	@Field(() => Date, { nullable: true })
+	constructedAt?: Date;
 
 	@Field(() => Date)
 	createdAt: Date;

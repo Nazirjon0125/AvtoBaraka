@@ -117,7 +117,7 @@ export class PropertyInput {
 	@IsNotEmpty()
 	@IsInt()
 	@Field(() => Int)
-	@Min(1)
+	@Min(0)
 	propertyMile: number;
 
 	@IsNotEmpty()
@@ -149,17 +149,9 @@ export class PropertyInput {
 	@Field(() => Date, { nullable: true })
 	constructedAt?: Date;
 }
+
 @InputType()
 export class PricesRange {
-	@Field(() => Int)
-	start: number;
-
-	@Field(() => Int)
-	end: number;
-}
-
-@InputType()
-export class SquaresRange {
 	@Field(() => Int)
 	start: number;
 
@@ -177,6 +169,24 @@ export class PeriodsRange {
 }
 
 @InputType()
+export class YearsRange {
+	@Field(() => Int)
+	start: number;
+
+	@Field(() => Int)
+	end: number;
+}
+
+@InputType()
+export class MileRange {
+	@Field(() => Int)
+	start: number;
+
+	@Field(() => Int)
+	end: number;
+}
+
+@InputType()
 export class PISearch {
 	@IsOptional()
 	@Field(() => String, { nullable: true })
@@ -191,12 +201,12 @@ export class PISearch {
 	typeList?: PropertyCarType[];
 
 	@IsOptional()
-	@Field(() => [Number], { nullable: true })
-	roomsList?: number[];
+	@Field(() => [PropertyFuel], { nullable: true })
+	fuelList?: PropertyFuel[];
 
 	@IsOptional()
-	@Field(() => [Number], { nullable: true })
-	bedsList?: number[];
+	@Field(() => [PropertyCarBody], { nullable: true })
+	carBodyList?: PropertyCarBody[];
 
 	@IsOptional()
 	@IsIn(availableOptions, { each: true })
@@ -212,8 +222,12 @@ export class PISearch {
 	periodsRange?: PeriodsRange;
 
 	@IsOptional()
-	@Field(() => SquaresRange, { nullable: true })
-	squaresRange?: SquaresRange;
+	@Field(() => YearsRange, { nullable: true })
+	yearsRange?: YearsRange;
+
+	@IsOptional()
+	@Field(() => MileRange, { nullable: true })
+	mileRange?: MileRange;
 
 	@IsOptional()
 	@Field(() => String, { nullable: true })

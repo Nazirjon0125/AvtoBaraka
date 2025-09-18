@@ -107,7 +107,8 @@ export const lookupMember = {
 		foreignField: '_id',
 		as: 'memberData',
 	},
-};
+}; /* memberId olib members collectiondan _id nomi bn qidirib 
+	  topilgan malumotni memberData nomi bn shakillantir */
 
 export const lookupFollowingData = {
 	$lookup: {
