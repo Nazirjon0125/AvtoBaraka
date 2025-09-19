@@ -239,9 +239,9 @@ export class PropertyService {
 					$facet: {
 						list: [
 							{ $skip: (input.page - 1) * input.limit },
-							{ $limit: input.limit },
-							lookupMember,
-							{ $unwind: '$memberData' },
+							{ $limit: input.limit }, // [property1, property2]
+							lookupMember, // memberData: [memberData.value]
+							{ $unwind: '$memberData' }, //memberData: memberData.value
 						],
 						metaCounter: [{ $count: 'total' }],
 					},
@@ -263,7 +263,11 @@ export class PropertyService {
 		if (propertyStatus === PropertyStatus.SOLD) soldAt = moment().toDate();
 		else if (propertyStatus === PropertyStatus.DELETE) deletedAt = moment().toDate();
 
-		const result = await this.propertyModel.findOneAndUpdate(search, input, { new: true }).exec();
+		const result = await this.propertyModel
+			.findOneAndUpdate(search, input, {
+				new: true,
+			})
+			.exec();
 		if (!result) throw new InternalServerErrorException(Message.UPDATE_FAILED);
 
 		if (soldAt || deletedAt) {
