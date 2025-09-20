@@ -121,7 +121,7 @@ export class PropertyUpdate {
 	propertyPrice?: number;
 
 	@IsOptional()
-	@Min(1)
+	@Min(0)
 	@Field(() => Number, { nullable: true })
 	propertyMile?: number;
 

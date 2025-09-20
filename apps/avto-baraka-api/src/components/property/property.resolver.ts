@@ -88,7 +88,7 @@ export class PropertyResolver {
 		return await this.propertyService.getVisited(memberId, input);
 	}
 
-	@Roles(MemberType.AGENT)
+	@Roles(MemberType.AGENT, MemberType.USER)
 	@UseGuards(RolesGuard)
 	@Query((returns) => Properties)
 	public async getAgentProperties(
