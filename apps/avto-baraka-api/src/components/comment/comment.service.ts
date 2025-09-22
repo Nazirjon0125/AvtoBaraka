@@ -89,7 +89,7 @@ export class CommentService {
 					list: [
 						{ $skip: (input.page - 1) * input.limit },
 						{ $limit: input.limit },
-						// meLiked!
+						// meLiked
 						lookupMember,
 						{ $unwind: '$memberData' },
 					],
