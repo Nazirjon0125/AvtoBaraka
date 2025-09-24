@@ -146,8 +146,8 @@ export class BoardArticleService {
 			likeRefId: likeRefId,
 			likeGroup: LikeGroup.ARTICLE,
 		};
-		//LIKE TOOG via Like modules
 
+		/* LIKE TOOG via Like modules */
 		const modifier: number = await this.likeService.toggleLike(input);
 		const result = await this.boardArticleStatsEditor({
 			_id: likeRefId,
