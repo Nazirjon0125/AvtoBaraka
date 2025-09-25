@@ -122,7 +122,7 @@ export class BoardArticleService {
 							{ $skip: (input.page - 1) * input.limit },
 							{ $limit: input.limit },
 							// meLiked
-							lookupAuthMemberLiked(memberId, '_id'),
+							lookupAuthMemberLiked(memberId, '$_id'),
 							lookupMember,
 							{ $unwind: '$memberData' },
 						],
