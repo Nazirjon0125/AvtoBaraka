@@ -37,7 +37,7 @@ export const lookupAuthMemberLiked = (memberId: T, targetRefId: string = '$_id')
 		$lookup: {
 			from: 'likes',
 			let: {
-				localLikeRefId: targetRefId,
+				localLikeRefId: targetRefId, //'$_id'
 				localMemberId: memberId,
 				localMyFavorite: true,
 			},
