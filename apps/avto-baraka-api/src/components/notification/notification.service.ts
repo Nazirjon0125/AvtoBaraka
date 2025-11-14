@@ -74,7 +74,7 @@ export class NotificationService {
 		return modifiedCount;
 	}
 
-	public async removeNotifications(_id: ObjectId): Promise<Notification> {
+	public async removeNotification(_id: ObjectId): Promise<Notification> {
 		const result = await this.notificationModel.findByIdAndDelete(_id).lean().exec();
 		if (!result) throw new NotFoundException(Message.REMOVE_FAILED);
 
