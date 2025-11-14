@@ -3,6 +3,7 @@ import { IsInt, IsNotEmpty, IsOptional, Length, Min } from 'class-validator';
 import {
 	AudiModel,
 	BMWModel,
+	CarOptions,
 	ChevroletModel,
 	HondaModel,
 	HyundaiModel,
@@ -17,6 +18,7 @@ import {
 	PropertyFuel,
 	PropertyLocation,
 	PropertyStatus,
+	PropertyTransmission,
 	TeslaModel,
 	ToyotaModel,
 	VolvoModel,
@@ -32,6 +34,18 @@ export class PropertyUpdate {
 	@IsOptional()
 	@Field(() => PropertyCarType, { nullable: true })
 	propertyCarType?: PropertyCarType;
+
+	@IsOptional()
+	@Field(() => String, { nullable: true })
+	propertyModel?: string;
+
+	@IsOptional()
+	@Field(() => PropertyTransmission, { nullable: true })
+	propertyTransmission?: PropertyTransmission;
+
+	@IsOptional()
+	@Field(() => [CarOptions], { nullable: true })
+	propertyCarOptions: CarOptions[];
 
 	/** Brand Models Optional */
 	@IsOptional()
@@ -114,7 +128,7 @@ export class PropertyUpdate {
 	@IsOptional()
 	@Length(3, 100)
 	@Field(() => String, { nullable: true })
-	ropertyTitle?: string;
+	propertyTitle?: string;
 
 	@IsOptional()
 	@Field(() => Number, { nullable: true })

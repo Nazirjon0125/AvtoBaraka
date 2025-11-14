@@ -3,6 +3,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
 	AudiModel,
 	BMWModel,
+	CarOptions,
 	ChevroletModel,
 	HondaModel,
 	HyundaiModel,
@@ -17,6 +18,7 @@ import {
 	PropertyFuel,
 	PropertyLocation,
 	PropertyStatus,
+	PropertyTransmission,
 	TeslaModel,
 	ToyotaModel,
 	VolvoModel,
@@ -31,6 +33,15 @@ export class Property {
 
 	@Field(() => PropertyCarType)
 	propertyCarType: PropertyCarType;
+
+	@Field(() => PropertyTransmission)
+	propertyTransmission: PropertyTransmission;
+
+	@Field(() => String)
+	propertyModel: string;
+
+	@Field(() => [CarOptions], { nullable: true })
+	propertyCarOptions: CarOptions[];
 
 	/** Brand Models Optional */
 	@Field(() => KiaModel, { nullable: true })

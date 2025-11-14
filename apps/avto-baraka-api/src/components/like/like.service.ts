@@ -9,6 +9,7 @@ import { OrdinaryInquiry } from '../../libs/dto/property/property.input';
 import { Properties } from '../../libs/dto/property/property';
 import { LikeGroup } from '../../libs/enums/like.enum';
 import { lookupFavorite } from '../../libs/config';
+import { NotificationModule } from '../notification/notification.module';
 
 @Injectable()
 export class LikeService {

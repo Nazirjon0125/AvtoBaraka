@@ -15,17 +15,20 @@ import { PropertyStatus } from '../../libs/enums/property.enum';
 import { StatisticModifier, T } from '../../libs/types/common';
 import { ViewGroup } from '../../libs/enums/view.enum';
 import { ViewService } from '../view/view.service';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 import { PropertyUpdate } from '../../libs/dto/property/property.update';
 import { lookupAuthMemberLiked, lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
 import { LikeService } from '../like/like.service';
 import { LikeInput } from '../../libs/dto/like/like.input';
 import { LikeGroup } from '../../libs/enums/like.enum';
+import moment = require('moment');
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 export class PropertyService {
 	constructor(
 		@InjectModel('Property') private readonly propertyModel: Model<Property>,
+		private readonly notificationService: NotificationService,
 		private memberService: MemberService,
 		private viewService: ViewService,
 		private likeService: LikeService,
@@ -219,6 +222,9 @@ export class PropertyService {
 		const result = await this.propertyStatsEditor({ _id: likeRefId, targetKey: 'propertyLikes', modifier: modifier });
 
 		if (!result) throw new InternalServerErrorException(Message.SOMETHING_WENT_WRONG);
+		if (modifier === 1) {
+			await this.notificationService.createOnPropertyLike(likeRefId, memberId);
+		}
 		return result;
 	}
 

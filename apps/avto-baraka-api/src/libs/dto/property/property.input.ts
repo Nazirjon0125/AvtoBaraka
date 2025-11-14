@@ -3,6 +3,7 @@ import { IsIn, IsInt, IsNotEmpty, IsOptional, Length, Min } from 'class-validato
 import {
 	AudiModel,
 	BMWModel,
+	CarOptions,
 	ChevroletModel,
 	HondaModel,
 	HyundaiModel,
@@ -17,6 +18,7 @@ import {
 	PropertyFuel,
 	PropertyLocation,
 	PropertyStatus,
+	PropertyTransmission,
 	TeslaModel,
 	ToyotaModel,
 	VolvoModel,
@@ -34,6 +36,18 @@ export class PropertyInput {
 	@IsNotEmpty()
 	@Field(() => PropertyLocation)
 	propertyLocation: PropertyLocation;
+
+	@IsOptional()
+	@Field(() => String, { nullable: true })
+	propertyModel?: string;
+
+	@IsOptional()
+	@Field(() => PropertyTransmission, { nullable: true })
+	propertyTransmission?: PropertyTransmission;
+
+	@IsOptional()
+	@Field(() => [CarOptions], { nullable: true })
+	propertyCarOptions: CarOptions[];
 
 	/** Dynamic Model based on brand */
 	@IsOptional()
@@ -124,7 +138,7 @@ export class PropertyInput {
 	@IsInt()
 	@Field(() => Int)
 	@Min(1)
-	propertyYear: number;
+	propertyYear?: number;
 
 	@IsNotEmpty()
 	@Field(() => [String])
@@ -191,6 +205,10 @@ export class PISearch {
 	@IsOptional()
 	@Field(() => String, { nullable: true })
 	memberId?: ObjectId;
+
+	@IsOptional()
+	@Field(() => [String], { nullable: true })
+	modelList?: string[]; // qo‘shildi
 
 	@IsOptional()
 	@Field(() => [PropertyLocation], { nullable: true })

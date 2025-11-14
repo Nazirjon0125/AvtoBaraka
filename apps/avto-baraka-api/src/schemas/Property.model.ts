@@ -19,6 +19,8 @@ import {
 	LincolnModel,
 	VolvoModel,
 	LexusModel,
+	PropertyTransmission,
+	CarOptions,
 } from '../libs/enums/property.enum';
 
 const PropertySchema = new Schema(
@@ -27,6 +29,10 @@ const PropertySchema = new Schema(
 			type: String,
 			enum: PropertyCarType,
 			required: true,
+		},
+
+		propertyModel: {
+			type: String,
 		},
 
 		propertyStatus: {
@@ -47,10 +53,22 @@ const PropertySchema = new Schema(
 			required: true,
 		},
 
+		propertyTransmission: {
+			type: String,
+			enum: PropertyTransmission,
+			required: true,
+		},
+
 		propertyCarBody: {
 			type: String,
 			enum: PropertyCarBody,
 			required: true,
+		},
+
+		propertyCarOptions: {
+			type: [String],
+			enum: CarOptions,
+			required: false,
 		},
 
 		// Brand-specific models
@@ -223,6 +241,6 @@ const PropertySchema = new Schema(
 	{ timestamps: true, collection: 'properties' },
 );
 
-PropertySchema.index({ propertyType: 1, propertyLocation: 1, propertyTitle: 1, propertyPrice: 1 }, { unique: true });
+PropertySchema.index({ propertyCarType: 1, propertyLocation: 1, propertyTitle: 1, propertyPrice: 1 }, { unique: true });
 
 export default PropertySchema;

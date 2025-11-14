@@ -8,6 +8,7 @@ import { ViewModule } from '../view/view.module';
 import { MemberModule } from '../member/member.module';
 import { PropertyModule } from '../property/property.module';
 import { BoardArticleModule } from '../board-article/board-article.module';
+import { NotificationModule } from '../notification/notification.module';
 
 @Module({
 	imports: [
@@ -22,6 +23,7 @@ import { BoardArticleModule } from '../board-article/board-article.module';
 		MemberModule,
 		PropertyModule,
 		BoardArticleModule,
+		NotificationModule,
 	],
 	providers: [CommentResolver, CommentService],
 	exports: [CommentService],

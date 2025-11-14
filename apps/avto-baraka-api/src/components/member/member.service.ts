@@ -15,12 +15,14 @@ import { LikeService } from '../like/like.service';
 import { lookupAuthMemberLiked } from '../../libs/config';
 import { StatisticModifier, T } from '../../libs/types/common';
 import { ViewService } from '../view/view.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 export class MemberService {
 	constructor(
 		@InjectModel('Member') private readonly memberModel: Model<Member>,
 		@InjectModel('Member') private readonly followModel: Model<Follower | Following>,
+		private readonly notificationService: NotificationService,
 		private authService: AuthService,
 		private viewService: ViewService,
 		private likeService: LikeService,
@@ -38,6 +40,9 @@ export class MemberService {
 
 		try {
 			const result = await this.memberModel.create(input);
+			void this.notificationService
+				.createWelcome(result._id as any)
+				.catch((e) => console.warn('createWelcome failed:', e?.message));
 
 			//TODO: Authentication via TOKEN
 			result.accessToken = await this.authService.createToken(result);
@@ -145,22 +150,25 @@ export class MemberService {
 	}
 
 	public async likeTargetMember(memberId: ObjectId, likeRefId: ObjectId): Promise<Member> {
-		const target: Member = await this.memberModel.findOne({ _id: likeRefId, memberStatus: MemberStatus.ACTIVE }).exec();
+		const target: Member | null = await this.memberModel
+			.findOne({ _id: likeRefId, memberStatus: MemberStatus.ACTIVE })
+			.exec();
 		if (!target) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
+
 		const input: LikeInput = {
 			memberId: memberId,
 			likeRefId: likeRefId,
 			likeGroup: LikeGroup.MEMBER,
 		};
-		//LIKE TOOG via Like modules
 
+		// likeToggle
 		const modifier: number = await this.likeService.toggleLike(input);
-		const result = await this.memberStatsEditor({
-			_id: likeRefId,
-			targetKey: 'memberLikes',
-			modifier: modifier,
-		});
-
+		if (modifier === 1 && String(memberId) !== String(likeRefId)) {
+			void this.notificationService
+				.createOnMemberLike(likeRefId as any, memberId as any)
+				.catch((e) => console.warn('createOnMemberLike failed:', e?.message));
+		}
+		const result = await this.memberStatsEditor({ _id: likeRefId, targetKey: 'memberLikes', modifier });
 		if (!result) throw new InternalServerErrorException(Message.SOMETHING_WENT_WRONG);
 		return result;
 	}

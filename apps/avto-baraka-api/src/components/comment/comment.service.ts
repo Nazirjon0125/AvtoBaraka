@@ -11,6 +11,8 @@ import { Comment, Comments } from '../../libs/dto/comment/comment';
 import { CommentUpdate } from '../../libs/dto/comment/comment.update';
 import { T } from '../../libs/types/common';
 import { lookupMember } from '../../libs/config';
+import { NotificationService } from '../notification/notification.service';
+
 @Injectable()
 export class CommentService {
 	constructor(
@@ -18,6 +20,7 @@ export class CommentService {
 		private readonly memberService: MemberService,
 		private readonly propertyService: PropertyService,
 		private readonly boardArticleService: BoardArticleService,
+		private readonly notificationService: NotificationService,
 	) {}
 
 	public async createComment(memberId: ObjectId, input: CommentInput): Promise<Comment> {
@@ -38,7 +41,9 @@ export class CommentService {
 					targetKey: 'propertyComments',
 					modifier: 1,
 				});
+				await this.notificationService.createOnPropertyComment(input.commentRefId, memberId);
 				break;
+
 			case CommentGroup.ARTICLE:
 				await this.boardArticleService.boardArticleStatsEditor({
 					_id: input.commentRefId,
@@ -46,13 +51,13 @@ export class CommentService {
 					modifier: 1,
 				});
 				break;
+
 			case CommentGroup.MEMBER:
 				await this.memberService.memberStatsEditor({
 					_id: input.commentRefId,
 					targetKey: 'memberComments',
 					modifier: 1,
 				});
-				break;
 		}
 
 		if (!result) throw new InternalServerErrorException(Message.CREATE_FAILED);
