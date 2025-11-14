@@ -43,8 +43,8 @@ export class NotificationResolver {
 
 	@UseGuards(AuthGuard)
 	@Mutation(() => Notification)
-	async removeNotifications(@Args('id') id: string): Promise<Notification> {
-		return this.notificationService.removeNotifications(shapeIntoMongoObjectId(id));
+	async removeNotification(@Args('id') id: string): Promise<Notification> {
+		return this.notificationService.removeNotification(shapeIntoMongoObjectId(id));
 	}
 
 	@UseGuards(AuthGuard)
