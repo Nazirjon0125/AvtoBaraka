@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   avtobaraka-api:
     container_name: avto-baraka-api
@@ -33,3 +31,7 @@ networks:
 # avtobaraka-api: localhost:4000 <=> 3000
 # avtobaraka-api: localhost:4004 <=> 3004
 # avtobaraka-batch: localhost:4005 <=> 3005
+# docker compose up -d
+# docker compose stop
+# docker compose start
+# docker compose restart
